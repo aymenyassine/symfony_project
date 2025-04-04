@@ -1,0 +1,66 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Restaurants{% endblock %}
+
+{% block body %}
+    <style>
+        .restaurants {
+            margin-top: 15px;
+            display: flex;
+            justify-content: center;
+        }
+        .restaurants h1 {
+            color: rgb(193, 172, 55);
+        }
+        .containere {
+            display: flex;
+            justify-content: space-between;
+        }
+    </style>
+
+    <div class="restaurants">
+        <div class="container mt-5">
+            <div class="containere">
+                <h1 style="text-align: center; margin-bottom: 15px;">Restaurants</h1>
+                
+                {% if isAdmin %}
+                    <a href="{{ path('app_restaurent_new') }}"><button class="btn btn-primary">Ajouter un Restaurant</button></a>
+                    <a href="{{ path('app_reserva_restaurants_index') }}"><button class="btn btn-secondary">Gestion des reservation</button></a>
+                {% endif %}
+                <a href="{{ path('app_reservation_restaurent') }}"><button class="btn btn-warning">Réserver un restaurant</button></a>
+            </div>
+            
+            <div class="row row-cols-1 row-cols-sm-2 row-cols-md-3 row-cols-lg-4 g-4">
+                {% for restaurent in restaurents %}
+                    <div class="col" style="margin-bottom: 10px;">
+                        <div class="card h-100 shadow-sm">
+                            {% if restaurent.photo %}
+                                <img src="{{ asset('img/Restaurent/' ~ restaurent.photo) }}" class="card-img-top" alt="{{ restaurent.name }}" style="height: 300px;">
+                            {% endif %}
+                            <div class="card-body">
+                                <h5 class="card-title text-truncate" style="text-align: center; color: rgb(193, 172, 55);">{{ restaurent.name }}</h5>
+                                <p class="card-text text-muted">{{ restaurent.description|slice(0, 100) ~ '...' }}</p>
+                                <div class="d-flex justify-content-center mt-3">
+                                    <a href="{{ path('app_restaurent_show', {'id': restaurent.id}) }}" class="btn btn-info btn-sm me-2">Voir</a>
+
+                                    {% if isAdmin %}
+                                        <a href="{{ path('app_restaurent_edit', {'id': restaurent.id}) }}" class="btn btn-warning btn-sm me-2">Éditer</a>
+                                        <form method="post" action="{{ path('app_restaurent_delete', {'id': restaurent.id}) }}" style="display:inline;">
+                                            <input type="hidden" name="_token" value="{{ csrf_token('delete' ~ restaurent.id) }}">
+                                            <button class="btn btn-danger btn-sm" type="submit">Supprimer</button>
+                                        </form>
+                                        
+                                    {% endif %}
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                {% endfor %}
+            </div>
+
+            {% if restaurents|length == 0 %}
+                <p class="text-center text-muted mt-4">Aucun restaurant disponible pour le moment.</p>
+            {% endif %}
+        </div>
+    </div>
+{% endblock %}

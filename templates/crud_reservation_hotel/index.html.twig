@@ -1,0 +1,39 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}ReservationHotel index{% endblock %}
+
+{% block body %}
+    <h1>ReservationHotel index</h1>
+
+    <table class="table">
+        <thead>
+            <tr>
+                <th>Id</th>
+                <th>Date</th>
+                <th>Guest_name</th>
+                <th>NumberOfGuests</th>
+                <th>actions</th>
+            </tr>
+        </thead>
+        <tbody>
+        {% for reservation_hotel in reservation_hotels %}
+            <tr>
+                <td>{{ reservation_hotel.id }}</td>
+                <td>{{ reservation_hotel.date ? reservation_hotel.date|date('Y-m-d H:i:s') : '' }}</td>
+                <td>{{ reservation_hotel.guestName }}</td>
+                <td>{{ reservation_hotel.numberOfGuests }}</td>
+                <td>
+                    <a href="{{ path('app_crud_reservation_hotel_show', {'id': reservation_hotel.id}) }}" class="btn btn-info">show</a>
+                    <a href="{{ path('app_crud_reservation_hotel_edit', {'id': reservation_hotel.id}) }}" class="btn btn-warning">edit</a>
+                </td>
+            </tr>
+        {% else %}
+            <tr>
+                <td colspan="5">no records found</td>
+            </tr>
+        {% endfor %}
+        </tbody>
+    </table>
+
+    <a href="{{ path('app_crud_reservation_hotel_new') }}" class="btn btn-primary">Create new</a>
+{% endblock %}

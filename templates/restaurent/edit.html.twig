@@ -1,0 +1,43 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Modifier le Restaurant{% endblock %}
+
+{% block body %}
+<style>
+    .test{
+        display: flex;
+    }
+</style>
+    <h1>Modifier le Restaurant</h1>
+
+    {{ form_start(form) }}
+        <div class="mb-3">
+            {{ form_label(form.name) }}
+            {{ form_widget(form.name, { 'attr': {'class': 'form-control'} }) }}
+        </div>
+
+        <div class="mb-3">
+            {{ form_label(form.description) }}
+            {{ form_widget(form.description, { 'attr': {'class': 'form-control'} }) }}
+        </div>
+
+        <div class="mb-3">
+            {{ form_label(form.photo) }}
+            {{ form_widget(form.photo, { 'attr': {'class': 'form-control'} }) }}
+        </div>
+
+        <div class="mb-3">
+            {{ form_label(form.menu) }}
+            {{ form_widget(form.menu, { 'attr': {'class': 'form-control'} }) }}
+        </div>
+        
+        <div class="mb-3">
+            {{ form_label(form.menus) }}
+            {{ form_widget(form.menus, { 'attr': {'class': 'form-control'} }) }}
+        </div>
+        
+        <button type="submit" class="btn btn-warning" class="test">Enregistrer les modifications</button>
+    {{ form_end(form) }}
+
+    <a href="{{ path('app_restaurent_index') }}" class="btn btn-secondary"class="test">Retour à la liste</a>
+{% endblock %}

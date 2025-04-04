@@ -1,0 +1,47 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Hotel{% endblock %}
+
+{% block body %}
+    <h1>Hotel</h1>
+
+    <table class="table">
+        <tbody>
+            <tr>
+                <th>Id</th>
+                <td>{{ hotel.id }}</td>
+            </tr>
+            <tr>
+                <th>Name</th>
+                <td>{{ hotel.name }}</td>
+            </tr>
+            <tr>
+                <th>Etoile</th>
+                <td>{{ hotel.etoile }}</td>
+            </tr>
+            <tr>
+                <th>Description</th>
+                <td>{{ hotel.description }}</td>
+            </tr>
+            <tr>
+                <th>Photo</th>
+                {% if hotel.photo %}
+                                <img src="{{ asset(hotel.photo) }}" class="card-img-top" alt="{{ hotel.name }}" style="height: 300px;">
+                {% else %}
+                <td><img src="{{ asset('img/Hôtels/default.jpg') }}" class="card-img-top" alt="{{ hotel.name }}"  style="height: 200px; width:400px;"></td>
+                {% endif %}
+            </tr>
+        </tbody>
+    </table>
+
+    <a href="{{ path('app_crud_hotel_index') }}" class="btn btn-info">list</a>
+
+    <a href="{{ path('app_crud_hotel_edit', {'id': hotel.id})}}" class="btn btn-warning btn-sm">edit</a>
+
+    <form method="post" action="{{ path('app_crud_hotel_delete', {'id': hotel.id}) }}" onsubmit="return confirm('Are you sure you want to delete this item?');">
+        <input type="hidden" name="_token" value="{{ csrf_token('delete' ~ hotel.id) }}">
+        <button class="btn btn-danger">Delete</button>
+    </form>
+    
+
+{% endblock %}

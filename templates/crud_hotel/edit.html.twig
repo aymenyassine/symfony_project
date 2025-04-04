@@ -1,0 +1,13 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Edit Hotel{% endblock %}
+
+{% block body %}
+    <h1>Edit Hotel</h1>
+
+    {{ include('crud_hotel/_form.html.twig', {'button_label': 'Update'}) }}
+
+    <a href="{{ path('app_crud_hotel_index') }}">list</a>
+
+    {{ include('crud_hotel/_delete_form.html.twig') }}
+{% endblock %}

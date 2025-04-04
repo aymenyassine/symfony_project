@@ -1,0 +1,42 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Menu List{% endblock %}
+
+{% block body %}
+<div class="container mt-4">
+    <div class="containerr">
+        <h1 class="mb-4">Menu List</h1>
+        <a href="{{ path('app_menu_new') }}" class="btn btn-success">Create new</a>
+    </div>
+    
+    <table class="table table-striped table-hover">
+        <thead class="table-dark">
+            <tr>
+                <th>Name</th>
+                <th>Description</th>
+                <th>Price</th>
+                <th>Actions</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for menu in menus %}
+                <tr>
+                    <td>{{ menu.name }}</td>
+                    <td>{{ menu.description }}</td>
+                    <td>{{ menu.price }}</td>
+                    <td>
+                        <a href="{{ path('app_menu_show', {id: menu.id}) }}" class="btn btn-primary btn-sm">View</a>
+                        <a href="{{ path('app_menu_edit', {id: menu.id}) }}" class="btn btn-warning btn-sm">Edit</a>
+                        <form method="post" action="{{ path('app_menu_delete', {id: menu.id}) }}" style="display:inline-block;">
+                            <input type="hidden" name="_token" value="{{ csrf_token('delete' ~ menu.id) }}">
+                            <button type="submit" class="btn btn-danger btn-sm">Delete</button>
+                        </form>
+                    </td>
+                </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+
+    
+</div>
+{% endblock %}

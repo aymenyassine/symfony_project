@@ -1,0 +1,60 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Détails du Restaurant{% endblock %}
+
+{% block body %}
+    <h1>Détails du Restaurant</h1>
+
+    <table class="table">
+        <tbody>
+            <tr>
+                <th>ID</th>
+                <td>{{ restaurent.id }}</td>
+            </tr>
+            <tr>
+                <th>Nom</th>
+                <td>{{ restaurent.name }}</td>
+            </tr>
+            <tr>
+                <th>Description</th>
+                <td>{{ restaurent.description }}</td>
+            </tr>
+            <tr>
+                <th>Photo</th>
+                <td>
+                    {% if restaurent.photo %}
+                        <img src="{{ asset('img/Restaurent/' ~ restaurent.photo) }}" alt="{{ restaurent.name }}" width="300px">
+                    {% else %}
+                        Pas de photo
+                    {% endif %}
+                </td>
+            </tr>
+            <tr>
+                <th>Menu Principal</th>
+                <td>{{ restaurent.menu.name }}</td>
+            </tr>
+            <tr>
+                <th>Menus Associés</th>
+                <td>
+                    {% for menu in restaurent.menus %}
+                        <p>{{ menu.name }}</p>
+                    {% else %}
+                        Aucun menu associé
+                    {% endfor %}
+                </td>
+            </tr>
+        </tbody>
+    </table>
+
+    <a href="{{ path('app_restaurent_index') }}" class="btn btn-secondary">Retour à la liste</a>
+
+   {% if is_granted('ROLE_ADMIN') %}
+    <a href="{{ path('app_restaurent_edit', {'id': restaurent.id}) }}" class="btn btn-warning">Modifier</a>
+
+    <form action="{{ path('app_restaurent_delete', {'id': restaurent.id}) }}" method="POST" style="display: inline;">
+        <input type="hidden" name="_token" value="{{ csrf_token('delete' ~ restaurent.id) }}">
+        <button type="submit" class="btn btn-danger">Supprimer</button>
+    </form>
+    
+{% endif %}
+{% endblock %}

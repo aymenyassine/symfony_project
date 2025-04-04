@@ -1,0 +1,13 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Edit Piscine{% endblock %}
+
+{% block body %}
+    <h1>Edit Piscine</h1>
+
+    {{ include('piscines/_form.html.twig', {'button_label': 'Update'}) }}
+
+    <a href="{{ path('app_piscines_index') }}">list</a>
+
+    {{ include('piscines/_delete_form.html.twig') }}
+{% endblock %}

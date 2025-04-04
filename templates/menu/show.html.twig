@@ -1,0 +1,26 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Menu Details{% endblock %}
+
+{% block body %}
+<div class="container mt-4">
+    <h1>Menu Details</h1>
+
+    <div class="card">
+        <div class="card-body">
+            <h2>{{ menu.name }}</h2>
+            <p><strong>Description:</strong> {{ menu.description }}</p>
+            <p><strong>Price:</strong> {{ menu.price }}</p>
+            <p><strong>Associated Restaurants:</strong></p>
+            <ul>
+                {% for restaurent in menu.restaurents %}
+                    <li>{{ restaurent.name }}</li>
+                {% endfor %}
+            </ul>
+        </div>
+    </div>
+
+    <a href="{{ path('app_menu_index') }}" class="btn btn-secondary mt-3">list</a>
+    <a href="{{ path('app_menu_edit', {id: menu.id}) }}" class="btn btn-warning mt-3">Edit</a>
+</div>
+{% endblock %}

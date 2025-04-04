@@ -1,0 +1,58 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Home{% endblock %}
+
+{% block body %}
+    <div class="container mt-5">
+        <h2>Explore Our Sections</h2>
+        <div class="row">
+            {# Card for Restaurant #}
+            <div class="col-md-3 mb-4">
+                <div class="card h-100">
+                    <img src="{{ asset('img/Restaurent/riad_orient.jpg') }}" class="card-img-top" alt="Restaurant" style="object-fit: cover; height: 200px;">
+                    <div class="card-body">
+                        <h5 class="card-title">Restaurant</h5>
+                        <p class="card-text">Enjoy a great dining experience with exquisite dishes prepared by expert chefs.</p>
+                        <a href="{{ path('app_restaurent_index') }}" class="btn btn-primary">Discover</a>
+                    </div>
+                </div>
+            </div>
+
+            {# Card for Piscine #}
+            <div class="col-md-3 mb-4">
+                <div class="card h-100">
+                    <img src="{{ asset('img/Piscine/al_mansour.jpg') }}" class="card-img-top" alt="Piscine" style="object-fit: cover; height: 200px;">
+                    <div class="card-body">
+                        <h5 class="card-title">Piscine</h5>
+                        <p class="card-text">Relax by our beautiful swimming pool with an amazing view and cool vibes.</p>
+                        <a href="{{ path('app_piscine') }}" class="btn btn-primary">Discover</a>
+                    </div>
+                </div>
+            </div>
+
+            {# Card for Hotel #}
+            <div class="col-md-3 mb-4">
+                <div class="card h-100">
+                    <img src="{{ asset('img/Hôtels/hotel5.jpg') }}" class="card-img-top" alt="Hotel" style="object-fit: cover; height: 200px;">
+                    <div class="card-body">
+                        <h5 class="card-title">Hotel</h5>
+                        <p class="card-text">Stay at our luxurious hotel with top-notch amenities and comfort.</p>
+                        <a href="{{ path('app_hotel') }}" class="btn btn-primary">Discover</a>
+                    </div>
+                </div>
+            </div>
+
+            {# Card for Excursion #}
+            <div class="col-md-3 mb-4">
+                <div class="card h-100">
+                    <img src="{{ asset('img/Excursion/agafay.jpg') }}" class="card-img-top" alt="Excursion" style="object-fit: cover; height: 200px;">
+                    <div class="card-body">
+                        <h5 class="card-title">Excursion</h5>
+                        <p class="card-text">Explore exciting excursions and adventure activities with us.</p>
+                        <a href="{{ path('app_excursions') }}" class="btn btn-primary">Discover</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+{% endblock %}

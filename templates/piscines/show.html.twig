@@ -1,0 +1,34 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Piscine{% endblock %}
+
+{% block body %}
+    <h1>Piscine</h1>
+
+    <table class="table">
+        <tbody>
+            <tr>
+                <th>Id</th>
+                <td>{{ piscine.id }}</td>
+            </tr>
+            <tr>
+                <th>Name</th>
+                <td>{{ piscine.name }}</td>
+            </tr>
+            <tr>
+                <th>Description</th>
+                <td>{{ piscine.description }}</td>
+            </tr>
+            <tr>
+                <th>Photo</th>
+                <td>{{ piscine.photo }}</td>
+            </tr>
+        </tbody>
+    </table>
+
+    <a href="{{ path('app_piscines_index') }}" class="btn btn-secondary">list</a>
+
+    <a href="{{ path('app_piscines_edit', {'id': piscine.id}) }}" class="btn btn-warning">edit</a>
+
+    <a href="{{ path('app_piscines_delete', {'id': piscine.id}) }}" class="btn btn-danger">Supprimer</a>
+{% endblock %}

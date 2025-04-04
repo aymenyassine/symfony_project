@@ -1,0 +1,13 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Edit Excursions{% endblock %}
+
+{% block body %}
+    <h1>Edit Excursions</h1>
+
+    {{ include('excursion/_form.html.twig', {'button_label': 'Update'}) }}
+
+    <a href="{{ path('app_excursion_index') }}" class="btn btn-secondary" style="margin-top: 10px;">list</a>
+
+    {{ include('excursion/_delete_form.html.twig') }}
+{% endblock %}

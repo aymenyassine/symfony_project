@@ -1,0 +1,54 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Nouvelle Réservation{% endblock %}
+
+{% block body %}
+    <div class="container mt-5">
+        <h1 class="text-center mb-4">Nouvelle Réservation</h1>
+
+        <div class="row justify-content-center">
+            <div class="col-md-8">
+                <div class="card shadow-sm">
+                    <div class="card-body">
+                        {{ form_start(form, {'attr': {'class': 'needs-validation', 'novalidate': 'novalidate'}}) }}
+
+                        <!-- Champ pour la date -->
+                        <div class="mb-3">
+                            {{ form_label(form.date, 'Date de réservation', {'label_attr': {'class': 'form-label'}}) }}
+                            {{ form_widget(form.date, {'attr': {'class': 'form-control'}}) }}
+                            {{ form_errors(form.date) }}
+                        </div>
+
+                        <!-- Champ pour le nom du client -->
+                        <div class="mb-3">
+                            {{ form_label(form.guest_name, 'Nom du client', {'label_attr': {'class': 'form-label'}}) }}
+                            {{ form_widget(form.guest_name, {'attr': {'class': 'form-control'}}) }}
+                            {{ form_errors(form.guest_name) }}
+                        </div>
+
+                        <!-- Champ pour le nombre de clients -->
+                        <div class="mb-3">
+                            {{ form_label(form.number_of_guests, 'Nombre de clients', {'label_attr': {'class': 'form-label'}}) }}
+                            {{ form_widget(form.number_of_guests, {'attr': {'class': 'form-control'}}) }}
+                            {{ form_errors(form.number_of_guests) }}
+                        </div>
+
+                        <!-- Champ pour la sélection du restaurant -->
+                        <div class="mb-3">
+                            {{ form_label(form.restaurants_id, 'Sélectionner un restaurant', {'label_attr': {'class': 'form-label'}}) }}
+                            {{ form_widget(form.restaurants_id, {'attr': {'class': 'form-control'}}) }}
+                            {{ form_errors(form.restaurants_id) }}
+                        </div>
+
+                        <!-- Bouton de soumission -->
+                        <div class="d-grid">
+                            <button type="submit" class="btn btn-primary btn-lg">Réserver</button>
+                        </div>
+
+                        {{ form_end(form) }}
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+{% endblock %}
